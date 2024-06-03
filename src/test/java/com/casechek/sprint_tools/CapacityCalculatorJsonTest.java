@@ -20,7 +20,7 @@ class CapacityCalculatorJsonTest {
     void capacityCalculatorSerializationTest() throws IOException {
         CapacityCalculator capacityCalculator = new CapacityCalculator("full stack alchemists", 9,
                 0, 5, 10, 22.0F);
-        assertEquals(capacityCalculator.holidays(), 0);
+        assertEquals(capacityCalculator.getHolidays(), 0);
         assertThat(json.write(capacityCalculator)).isStrictlyEqualToJson("/expected_team_data.json");
         assertThat(json.write(capacityCalculator)).hasJsonPathStringValue("@.teamName");
         assertThat(json.write(capacityCalculator)).extractingJsonPathStringValue("@.teamName")
@@ -57,7 +57,7 @@ class CapacityCalculatorJsonTest {
         assertThat(json.parse(expected))
                 .isEqualTo(new CapacityCalculator("full stack alchemists", 9,
                         0, 5, 10, 22.0F));
-        assertThat(json.parseObject(expected).teamName()).isEqualTo("full stack alchemists");
-        assertThat(json.parseObject(expected).daysInSprint()).isEqualTo(9);
+        assertThat(json.parseObject(expected).getTeamName()).isEqualTo("full stack alchemists");
+        assertThat(json.parseObject(expected).getDaysInSprint()).isEqualTo(9);
     }
 }
