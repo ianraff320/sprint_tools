@@ -1,7 +1,7 @@
 package com.casechek.sprint_tools.api;
 
-import com.casechek.sprint_tools.persistence.SprintCalculatorRepository;
 import com.casechek.sprint_tools.persistence.entity.CapacityCalculator;
+import com.casechek.sprint_tools.persistence.repository.SprintCalculatorRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
