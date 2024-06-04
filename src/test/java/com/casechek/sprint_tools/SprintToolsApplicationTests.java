@@ -1,5 +1,6 @@
 package com.casechek.sprint_tools;
 
+import com.casechek.sprint_tools.persistence.entity.CapacityCalculator;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
