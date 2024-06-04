@@ -1,4 +1,4 @@
-package com.casechek.sprint_tools;
+package com.casechek.sprint_tools.persistence.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
