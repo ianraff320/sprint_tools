@@ -39,7 +39,7 @@
 //        Team savedTeam = teamRepository.save(newTeamRequest);
 //        URI locationOfNewTeam = ucb
 //                .path("team/{requestedTeamName}")
-//                .buildAndExpand(savedTeam.getTeamName())
+//                .buildAndExpand(savedTeam.getFirstName())
 //                .toUri();
 //        return ResponseEntity.created(locationOfNewTeam).build();
 //    }

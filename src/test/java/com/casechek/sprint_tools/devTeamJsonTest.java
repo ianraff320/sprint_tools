@@ -23,8 +23,8 @@ class devTeamJsonTest {
         );
         assertEquals(team.getHolidays(), 0);
         assertThat(json.write(team)).isStrictlyEqualToJson("/expected_team_data.json");
-        assertThat(json.write(team)).hasJsonPathStringValue("@.teamName");
-        assertThat(json.write(team)).extractingJsonPathStringValue("@.teamName")
+        assertThat(json.write(team)).hasJsonPathStringValue("@.firstName");
+        assertThat(json.write(team)).extractingJsonPathStringValue("@.firstName")
                 .isEqualTo("full stack alchemists");
         assertThat(json.write(team)).hasJsonPathNumberValue("@.daysInSprint");
         assertThat(json.write(team)).extractingJsonPathNumberValue("@.daysInSprint")
@@ -47,7 +47,7 @@ class devTeamJsonTest {
     void capacityCalculatorDeserializationTest() throws IOException {
         String expected = """
                 {
-                  "teamName": "full stack alchemists",
+                  "firstName": "full stack alchemists",
                   "daysInSprint": 9,
                   "holidays": 0,
                   "developerCount": 5,

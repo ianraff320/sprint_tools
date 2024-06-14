@@ -1,52 +1,37 @@
-//package com.casechek.sprint_tools.api;
-//
-//import com.casechek.sprint_tools.persistence.entity.Team;
-//import com.casechek.sprint_tools.persistence.repository.TeamRepository;
-//import com.casechek.sprint_tools.service.SprintCapacityService;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.util.UriComponentsBuilder;
-//
-//import java.net.URI;
-//import java.util.Optional;
-//
-//@RestController
-//@RequestMapping("/team")
-//class DeveloperController {
-//    private final TeamRepository teamRepository;
-//
-//    private final SprintCapacityService sprintCapacityService;
-//
-//    private DeveloperController(TeamRepository teamRepository,
-//                                SprintCapacityService sprintCapacityService) {
-//        this.teamRepository = teamRepository;
-//        this.sprintCapacityService = sprintCapacityService;
-//    }
-//
-//    @GetMapping("/{requestedTeamName}")
-//    private ResponseEntity<Team> findById(@PathVariable String requestedTeamName) {
-//        Optional<Team> teamOptional = teamRepository.findById(requestedTeamName);
-//        if (teamOptional.isPresent()) {
-//            return ResponseEntity.ok(teamOptional.get());
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-//
-//    @PostMapping
-//    private ResponseEntity<Void> createTeam(@RequestBody Team newTeamRequest,
-//                                                     UriComponentsBuilder ucb) {
-//        Team savedTeam = teamRepository.save(newTeamRequest);
-//        URI locationOfNewTeam = ucb
-//                .path("team/{requestedTeamName}")
-//                .buildAndExpand(savedTeam.getTeamName())
-//                .toUri();
-//        return ResponseEntity.created(locationOfNewTeam).build();
-//    }
-//
-//    @PostMapping("/calculate")
-//    private ResponseEntity<String> calculateSprint(@RequestBody Team newTeamRequest) {
-//        String sprintCapacity = sprintCapacityService.calculate(newTeamRequest);
-//        return ResponseEntity.ok(sprintCapacity);
-//    }
-//}
+package com.casechek.sprint_tools.api;
+
+import com.casechek.sprint_tools.persistence.entity.Developer;
+import com.casechek.sprint_tools.persistence.entity.Team;
+import com.casechek.sprint_tools.persistence.repository.DeveloperRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/developers")
+class DeveloperController {
+    private final DeveloperRepository developerRepository;
+
+
+    private DeveloperController(DeveloperRepository developerRepository) {
+        this.developerRepository = developerRepository;
+    }
+
+    @GetMapping("/{id}")
+    private ResponseEntity<Developer> findById(@PathVariable("id") Long requestedId) {
+        Optional<Developer> developerOptional = developerRepository.findById(requestedId);
+        if (developerOptional.isPresent()) {
+            return ResponseEntity.ok(developerOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping
+    private ResponseEntity<Developer> createDeveloper(@RequestBody Developer newDeveloperRequest) {
+        Developer savedDeveloper = developerRepository.save(newDeveloperRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedDeveloper);
+    }
+}

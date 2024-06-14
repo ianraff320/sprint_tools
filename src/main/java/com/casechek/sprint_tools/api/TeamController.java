@@ -24,8 +24,8 @@ class TeamController {
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<Team> findById(@PathVariable Long id) {
-        Optional<Team> teamOptional = teamRepository.findById(id);
+    private ResponseEntity<Team> findById(@PathVariable("id") Long requestedId) {
+        Optional<Team> teamOptional = teamRepository.findById(requestedId);
         if (teamOptional.isPresent()) {
             return ResponseEntity.ok(teamOptional.get());
         } else {

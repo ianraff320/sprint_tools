@@ -1,79 +1,56 @@
 package com.casechek.sprint_tools.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "capacity_calculator")
+@Table(name = "developer")
 public class Developer {
 
     @Id
-    String teamName;
-    Integer daysInSprint;
-    Integer holidays;
-    Integer developerCount;
-    Integer ptoTotal;
-    Float averageVelocity;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+    String firstName;
+    String lastName;
+    String teamName; // what if developers can move teams during different sprints?
 
     public Developer() {
+
     }
 
-    public Developer(String teamName, Integer daysInSprint, Integer holidays, Integer developerCount, Integer ptoTotal,
-                     Float averageVelocity) {
-        this.teamName = teamName;
-        this.daysInSprint = daysInSprint;
-        this.holidays = holidays;
-        this.developerCount = developerCount;
-        this.ptoTotal = ptoTotal;
-        this.averageVelocity = averageVelocity;
+    public Developer(String firstName, String lastName) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public Integer getDaysInSprint() {
-        return daysInSprint;
+    public Long getId() {
+        return id;
     }
 
-    public void setDaysInSprint(Integer daysInSprint) {
-        this.daysInSprint = daysInSprint;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Integer getHolidays() {
-        return holidays;
+    public String getLastName() {
+
+        return lastName;
     }
 
-    public void setHolidays(Integer holidays) {
-        this.holidays = holidays;
+    public void setLastName(String lastName) {
+
+        this.lastName = lastName;
     }
 
-    public Integer getDeveloperCount() {
-        return developerCount;
-    }
+    public String getFullName() {
 
-    public void setDeveloperCount(Integer developerCount) {
-        this.developerCount = developerCount;
-    }
-
-    public Integer getPtoTotal() {
-        return ptoTotal;
-    }
-
-    public void setPtoTotal(Integer ptoTotal) {
-        this.ptoTotal = ptoTotal;
-    }
-
-    public Float getAverageVelocity() {
-        return averageVelocity;
-    }
-
-    public void setAverageVelocity(Float averageVelocity) {
-        this.averageVelocity = averageVelocity;
+        return firstName + " " + lastName;
     }
 }
