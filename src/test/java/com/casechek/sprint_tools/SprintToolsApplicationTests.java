@@ -1,6 +1,6 @@
 package com.casechek.sprint_tools;
 
-import com.casechek.sprint_tools.persistence.entity.devTeam;
+import com.casechek.sprint_tools.persistence.entity.DevTeam;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class SprintToolsApplicationTests {
 
 	@Test
 	void shouldReturnSprintDetailsWhenDataIsSaved() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/capacitycalcs/full stack alchemists",
+		ResponseEntity<String> response = restTemplate.getForEntity("/devteam/full stack alchemists",
 				String.class);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -56,7 +56,7 @@ class SprintToolsApplicationTests {
 
 	@Test
 	void shouldCreateNewSprintDetails() {
-		devTeam newDevTeam = new devTeam("full stack alchemists",
+		DevTeam newDevTeam = new DevTeam("full stack alchemists",
 				9, 0, 5, 0, 22.0F);
 		ResponseEntity<Void> createResponse = restTemplate.postForEntity("/capacitycalcs", newDevTeam,
 				Void.class);

@@ -1,6 +1,6 @@
 package com.casechek.sprint_tools;
 
-import com.casechek.sprint_tools.persistence.entity.devTeam;
+import com.casechek.sprint_tools.persistence.entity.DevTeam;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -15,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class devTeamJsonTest {
 
     @Autowired
-    private JacksonTester<devTeam> json;
+    private JacksonTester<DevTeam> json;
 
     @Test
     void devTeamSerializationTest() throws IOException {
-        devTeam devTeam = new devTeam("full stack alchemists", 9,
+        DevTeam devTeam = new DevTeam("full stack alchemists", 9,
                 0, 5, 10, 22.0F);
         assertEquals(devTeam.getHolidays(), 0);
         assertThat(json.write(devTeam)).isStrictlyEqualToJson("/expected_team_data.json");
@@ -56,7 +56,7 @@ class devTeamJsonTest {
                 }
                 """;
         assertThat(json.parse(expected))
-                .isEqualTo(new devTeam("full stack alchemists", 9,
+                .isEqualTo(new DevTeam("full stack alchemists", 9,
                         0, 5, 10, 22.0F));
         assertThat(json.parseObject(expected).getTeamName()).isEqualTo("full stack alchemists");
         assertThat(json.parseObject(expected).getDaysInSprint()).isEqualTo(9);
