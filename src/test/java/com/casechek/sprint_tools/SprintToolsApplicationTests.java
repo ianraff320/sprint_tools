@@ -1,6 +1,6 @@
 package com.casechek.sprint_tools;
 
-import com.casechek.sprint_tools.persistence.entity.DevTeam;
+import com.casechek.sprint_tools.persistence.entity.Team;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
@@ -56,9 +56,9 @@ class SprintToolsApplicationTests {
 
 	@Test
 	void shouldCreateNewSprintDetails() {
-		DevTeam newDevTeam = new DevTeam("full stack alchemists",
-				9, 0, 5, 0, 22.0F);
-		ResponseEntity<Void> createResponse = restTemplate.postForEntity("/capacitycalcs", newDevTeam,
+		Team newTeam = new Team("full stack alchemists"
+		);
+		ResponseEntity<Void> createResponse = restTemplate.postForEntity("/capacitycalcs", newTeam,
 				Void.class);
 
 		assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);

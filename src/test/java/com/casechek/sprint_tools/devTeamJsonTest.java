@@ -1,6 +1,6 @@
 package com.casechek.sprint_tools;
 
-import com.casechek.sprint_tools.persistence.entity.DevTeam;
+import com.casechek.sprint_tools.persistence.entity.Team;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -15,31 +15,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class devTeamJsonTest {
 
     @Autowired
-    private JacksonTester<DevTeam> json;
+    private JacksonTester<Team> json;
 
     @Test
     void devTeamSerializationTest() throws IOException {
-        DevTeam devTeam = new DevTeam("full stack alchemists", 9,
-                0, 5, 10, 22.0F);
-        assertEquals(devTeam.getHolidays(), 0);
-        assertThat(json.write(devTeam)).isStrictlyEqualToJson("/expected_team_data.json");
-        assertThat(json.write(devTeam)).hasJsonPathStringValue("@.teamName");
-        assertThat(json.write(devTeam)).extractingJsonPathStringValue("@.teamName")
+        Team team = new Team("full stack alchemists"
+        );
+        assertEquals(team.getHolidays(), 0);
+        assertThat(json.write(team)).isStrictlyEqualToJson("/expected_team_data.json");
+        assertThat(json.write(team)).hasJsonPathStringValue("@.teamName");
+        assertThat(json.write(team)).extractingJsonPathStringValue("@.teamName")
                 .isEqualTo("full stack alchemists");
-        assertThat(json.write(devTeam)).hasJsonPathNumberValue("@.daysInSprint");
-        assertThat(json.write(devTeam)).extractingJsonPathNumberValue("@.daysInSprint")
+        assertThat(json.write(team)).hasJsonPathNumberValue("@.daysInSprint");
+        assertThat(json.write(team)).extractingJsonPathNumberValue("@.daysInSprint")
                 .isEqualTo(9);
-        assertThat(json.write(devTeam)).hasJsonPathNumberValue("@.holidays");
-        assertThat(json.write(devTeam)).extractingJsonPathNumberValue("@.holidays")
+        assertThat(json.write(team)).hasJsonPathNumberValue("@.holidays");
+        assertThat(json.write(team)).extractingJsonPathNumberValue("@.holidays")
                 .isEqualTo(0);
-        assertThat(json.write(devTeam)).hasJsonPathNumberValue("@.developerCount");
-        assertThat(json.write(devTeam)).extractingJsonPathNumberValue("@.developerCount")
+        assertThat(json.write(team)).hasJsonPathNumberValue("@.developerCount");
+        assertThat(json.write(team)).extractingJsonPathNumberValue("@.developerCount")
                 .isEqualTo(5);
-        assertThat(json.write(devTeam)).hasJsonPathNumberValue("@.ptoTotal");
-        assertThat(json.write(devTeam)).extractingJsonPathNumberValue("@.ptoTotal")
+        assertThat(json.write(team)).hasJsonPathNumberValue("@.ptoTotal");
+        assertThat(json.write(team)).extractingJsonPathNumberValue("@.ptoTotal")
                 .isEqualTo(10);
-        assertThat(json.write(devTeam)).hasJsonPathNumberValue("@.averageVelocity");
-        assertThat(json.write(devTeam)).extractingJsonPathNumberValue("@.averageVelocity")
+        assertThat(json.write(team)).hasJsonPathNumberValue("@.averageVelocity");
+        assertThat(json.write(team)).extractingJsonPathNumberValue("@.averageVelocity")
                 .isEqualTo(22.0);
     }
 
@@ -56,8 +56,8 @@ class devTeamJsonTest {
                 }
                 """;
         assertThat(json.parse(expected))
-                .isEqualTo(new DevTeam("full stack alchemists", 9,
-                        0, 5, 10, 22.0F));
+                .isEqualTo(new Team("full stack alchemists"
+                ));
         assertThat(json.parseObject(expected).getTeamName()).isEqualTo("full stack alchemists");
         assertThat(json.parseObject(expected).getDaysInSprint()).isEqualTo(9);
     }

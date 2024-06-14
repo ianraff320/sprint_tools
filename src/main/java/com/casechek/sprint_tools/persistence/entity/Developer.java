@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "capacity_calculator")
-public class DevTeam {
+public class Developer {
 
     @Id
     String teamName;
@@ -16,11 +16,11 @@ public class DevTeam {
     Integer ptoTotal;
     Float averageVelocity;
 
-    public DevTeam() {
+    public Developer() {
     }
 
-    public DevTeam(String teamName, Integer daysInSprint, Integer holidays, Integer developerCount, Integer ptoTotal,
-                   Float averageVelocity) {
+    public Developer(String teamName, Integer daysInSprint, Integer holidays, Integer developerCount, Integer ptoTotal,
+                     Float averageVelocity) {
         this.teamName = teamName;
         this.daysInSprint = daysInSprint;
         this.holidays = holidays;
