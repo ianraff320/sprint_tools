@@ -30,14 +30,14 @@
 //    public String calculate(Team team) {
 //        Integer sprintCapacity = 0;
 //
-//        float sprintDayCapacity = (((float)(team.getDaysInSprint() - team.getHolidays()) /
-//                team.getDaysInSprint()) * team.getAverageVelocity());
-//        float teamCapacity = (float)((team.getDaysInSprint() * team.getDeveloperCount()) - team.getPtoTotal())
-//                / (team.getDaysInSprint() * team.getDeveloperCount());
+//        float sprintDayCapacity = (((float)(team.getStartDate() - team.getHolidays()) /
+//                team.getStartDate()) * team.getAverageVelocity());
+//        float teamCapacity = (float)((team.getStartDate() * team.getDeveloperCount()) - team.getPtoTotal())
+//                / (team.getStartDate() * team.getDeveloperCount());
 //        String teamCapacityFormatted = NumberFormat.getPercentInstance().format(teamCapacity);
 //        sprintCapacity = Math.round(sprintDayCapacity * teamCapacity);
 //
-//        System.out.println("Your team is operating at " + teamCapacityFormatted);
+//        System.out.println("Your team is operating at " + teamCapacityFormatted); // need to divide this by "time based" capacity (day capacity * average)
 //        System.out.println("Look to add " + sprintCapacity + " points to your next sprint");
 //        teamRepository.save(team);
 //

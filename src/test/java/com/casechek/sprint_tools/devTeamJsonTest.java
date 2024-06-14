@@ -26,8 +26,8 @@ class devTeamJsonTest {
         assertThat(json.write(team)).hasJsonPathStringValue("@.firstName");
         assertThat(json.write(team)).extractingJsonPathStringValue("@.firstName")
                 .isEqualTo("full stack alchemists");
-        assertThat(json.write(team)).hasJsonPathNumberValue("@.daysInSprint");
-        assertThat(json.write(team)).extractingJsonPathNumberValue("@.daysInSprint")
+        assertThat(json.write(team)).hasJsonPathNumberValue("@.startDate");
+        assertThat(json.write(team)).extractingJsonPathNumberValue("@.startDate")
                 .isEqualTo(9);
         assertThat(json.write(team)).hasJsonPathNumberValue("@.holidays");
         assertThat(json.write(team)).extractingJsonPathNumberValue("@.holidays")
@@ -48,7 +48,7 @@ class devTeamJsonTest {
         String expected = """
                 {
                   "firstName": "full stack alchemists",
-                  "daysInSprint": 9,
+                  "startDate": 9,
                   "holidays": 0,
                   "developerCount": 5,
                   "ptoTotal": 10,

@@ -4,45 +4,49 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "capacity_calculator")
 public class Sprint {
 
     @Id
-    String teamName;
-    Integer daysInSprint;
+    Long id;
+    String sprintName;
+    String teamName; // this shouldn't be here because it's built elsewhere?
+    Date startDate;
+    Date endDate;
     Integer holidays;
-    Integer developerCount;
     Integer ptoTotal;
     Float averageVelocity;
 
     public Sprint() {
     }
 
-    public Sprint(String teamName, Integer daysInSprint, Integer holidays, Integer developerCount, Integer ptoTotal,
+    public Sprint(String sprintName, Integer startDate, Integer holidays, Integer developerCount, Integer ptoTotal,
                   Float averageVelocity) {
-        this.teamName = teamName;
-        this.daysInSprint = daysInSprint;
+        this.sprintName = sprintName;
+        this.daysInSprint = startDate;
         this.holidays = holidays;
         this.developerCount = developerCount;
         this.ptoTotal = ptoTotal;
         this.averageVelocity = averageVelocity;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public String getSprintName() {
+        return sprintName;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setSprintName(String sprintName) {
+        this.sprintName = sprintName;
     }
 
-    public Integer getDaysInSprint() {
+    public Integer getStartDate() {
         return daysInSprint;
     }
 
-    public void setDaysInSprint(Integer daysInSprint) {
-        this.daysInSprint = daysInSprint;
+    public void setStartDate(Integer startDate) {
+        this.daysInSprint = startDate;
     }
 
     public Integer getHolidays() {
