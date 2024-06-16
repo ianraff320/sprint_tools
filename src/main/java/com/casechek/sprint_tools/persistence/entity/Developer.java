@@ -8,19 +8,22 @@ public class Developer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String firstName;
-    String lastName;
-    String teamName; // what if developers can move teams during different sprints?
+    private Long id;
+    private String firstName;
+    private String lastName;
+    @ManyToOne
+    @JoinColumn (name = "team_id")
+    private Team team;
 
     public Developer() {
 
     }
 
-    public Developer(String firstName, String lastName) {
+    public Developer(String firstName, String lastName, Team team) {
 
         this.firstName = firstName;
         this.lastName = lastName;
+        this.team = team;
     }
 
     public String getFirstName() {
@@ -49,8 +52,11 @@ public class Developer {
         this.lastName = lastName;
     }
 
-    public String getFullName() {
+    public Team getTeam() {
+        return team;
+    }
 
-        return firstName + " " + lastName;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

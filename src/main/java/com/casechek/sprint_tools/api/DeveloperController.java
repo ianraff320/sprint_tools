@@ -11,26 +11,25 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/developers")
-class DeveloperController {
+public class DeveloperController {
     private final DeveloperRepository developerRepository;
 
-
-    private DeveloperController(DeveloperRepository developerRepository) {
+    public DeveloperController(DeveloperRepository developerRepository) {
         this.developerRepository = developerRepository;
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<Developer> findById(@PathVariable("id") Long requestedId) {
-        Optional<Developer> developerOptional = developerRepository.findById(requestedId);
+    public ResponseEntity<Developer> findById(@PathVariable Long id) {
+        Optional<Developer> developerOptional = developerRepository.findById(id);
         if (developerOptional.isPresent()) {
             return ResponseEntity.ok(developerOptional.get());
         } else {
-            return ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
-    private ResponseEntity<Developer> createDeveloper(@RequestBody Developer newDeveloperRequest) {
+    public ResponseEntity<Developer> createDeveloper(@RequestBody Developer newDeveloperRequest) {
         Developer savedDeveloper = developerRepository.save(newDeveloperRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedDeveloper);
     }

@@ -1,52 +1,76 @@
 package com.casechek.sprint_tools.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "capacity_calculator")
+@Table(name = "sprint")
 public class Sprint {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String sprintName;
+    String name;
     String teamName; // this shouldn't be here because it's built elsewhere?
     Date startDate;
     Date endDate;
     Integer holidays;
     Integer ptoTotal;
-    Float averageVelocity;
+    Integer estimatedPoints;
+    Integer completedPoints;
 
     public Sprint() {
     }
 
-    public Sprint(String sprintName, Integer startDate, Integer holidays, Integer developerCount, Integer ptoTotal,
-                  Float averageVelocity) {
-        this.sprintName = sprintName;
-        this.daysInSprint = startDate;
+    public Sprint(Long id, String name, String teamName, Date startDate, Date endDate, Integer holidays, Integer ptoTotal) {
+        this.id = id;
+        this.name = name;
+        this.teamName = teamName;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.holidays = holidays;
-        this.developerCount = developerCount;
         this.ptoTotal = ptoTotal;
-        this.averageVelocity = averageVelocity;
     }
 
-    public String getSprintName() {
-        return sprintName;
+    public Long getId() {
+        return id;
     }
 
-    public void setSprintName(String sprintName) {
-        this.sprintName = sprintName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Integer getStartDate() {
-        return daysInSprint;
+    public String getName() {
+        return name;
     }
 
-    public void setStartDate(Integer startDate) {
-        this.daysInSprint = startDate;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public Integer getHolidays() {
@@ -57,14 +81,6 @@ public class Sprint {
         this.holidays = holidays;
     }
 
-    public Integer getDeveloperCount() {
-        return developerCount;
-    }
-
-    public void setDeveloperCount(Integer developerCount) {
-        this.developerCount = developerCount;
-    }
-
     public Integer getPtoTotal() {
         return ptoTotal;
     }
@@ -73,11 +89,20 @@ public class Sprint {
         this.ptoTotal = ptoTotal;
     }
 
-    public Float getAverageVelocity() {
-        return averageVelocity;
+    public Integer getEstimatedPoints() {
+        return estimatedPoints;
     }
 
-    public void setAverageVelocity(Float averageVelocity) {
-        this.averageVelocity = averageVelocity;
+    public void setEstimatedPoints(Integer estimatedPoints) {
+        this.estimatedPoints = estimatedPoints;
+    }
+
+    public Integer getCompletedPoints() {
+        return completedPoints;
+    }
+
+    public void setCompletedPoints(Integer completedPoints) {
+        this.completedPoints = completedPoints;
     }
 }
+
