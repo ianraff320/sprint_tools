@@ -17,7 +17,6 @@ public class Team {
     private String teamName;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("team")
     private List<Developer> developers = new ArrayList<>();
 
     public Team() {

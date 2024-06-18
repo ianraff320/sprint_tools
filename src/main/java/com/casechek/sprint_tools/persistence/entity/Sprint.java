@@ -12,7 +12,7 @@ public class Sprint {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
-    String teamName; // this shouldn't be here because it's built elsewhere?
+    String teamName; // should this be id? and use the @manytoone annotation?
     Date startDate;
     Date endDate;
     Integer holidays;
@@ -23,7 +23,8 @@ public class Sprint {
     public Sprint() {
     }
 
-    public Sprint(Long id, String name, String teamName, Date startDate, Date endDate, Integer holidays, Integer ptoTotal) {
+    public Sprint(Long id, String name, String teamName, Date startDate, Date endDate, Integer holidays,
+                  Integer ptoTotal, Integer estimatedPoints, Integer completedPoints) {
         this.id = id;
         this.name = name;
         this.teamName = teamName;
@@ -31,6 +32,8 @@ public class Sprint {
         this.endDate = endDate;
         this.holidays = holidays;
         this.ptoTotal = ptoTotal;
+        this.estimatedPoints = estimatedPoints;
+        this.completedPoints = completedPoints;
     }
 
     public Long getId() {

@@ -52,8 +52,12 @@ public class Developer {
         this.lastName = lastName;
     }
 
-    public Team getTeam() {
-        return team;
+//    public Team getTeam() {
+//        return team;
+//    }
+
+    public String getTeamName() {
+        return team != null ? team.getTeamName() : null;
     }
 
     public void setTeam(Team team) {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -53,17 +53,19 @@ public class TeamController {
     @PostMapping("/{id}/developers")
     public ResponseEntity<Team> addDeveloperToTeam(
             @PathVariable Long id,
-            @RequestBody Long developerId
-    ) {
+            @RequestBody Map<String, Long> requestBody
+            ) {
+        Long developerId = requestBody.get("developerId");
+
         Optional<Team> teamOptional = teamRepository.findById(id);
         Optional<Developer> developerOptional = developerRepository.findById(developerId);
 
         if (teamOptional.isPresent() && developerOptional.isPresent()) {
             Team team = teamOptional.get();
-            Developer developer = developerOptional.get();
+            Developer addedDeveloper = developerOptional.get();
 
-            team.addDeveloper(developer);
-            developerRepository.save(developer);
+            team.addDeveloper(addedDeveloper);
+            developerRepository.save(addedDeveloper);
             teamRepository.save(team);
             return ResponseEntity.ok(team);
         } else {
